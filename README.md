@@ -14,9 +14,13 @@ USAGE.
 To use the Simple Shell, navigate to the directory where the program is installed and run
 the executable file simple_shell:
 
-shell
 Copy code
-$ ./simple_shell
+
+```
+./simple_shell
+
+```
+
 Features
 
 - Simple Shell 0.1
@@ -28,7 +32,9 @@ Features
 - If an executable cannot be found, an error message is printed, and the prompt is displayed again.
 - Handles errors.
 - Handles the "end of file" condition (Ctrl+D).
-- Simple Shell 0.2
+
+Simple Shell 0.2
+
 - Handles command lines with arguments.
 
 Simple Shell 0.3
@@ -52,34 +58,34 @@ To install the Simple Shell, follow these steps:
 - Clone the repository:simple_shell
 
 ```
-$ git clone https://github.com/your_username/simple_shell.git
+git clone https://github.com/your_username/simple_shell.git
 
 ```
 
-Navigate to the simple_shell directory:
+- Navigate to the simple_shell directory:
 
 Copy code:
 
 ```
-$ cd simple_shell
+cd simple_shell
 
 ```
 
-Compile the program:
+- Compile the program:
 
 Copy code:
 
 ```
-$ gcc -Wall -Werror -Wextra -pedantic \*.c -o simple_shell
+gcc -Wall -Werror -Wextra -pedantic \*.c -o simple_shell
 
 ```
 
-Run the program:
+- Run the program:
 
 Copy code:
 
 ```
-$ ./simple_shell
+./simple_shell
 
 ```
 
