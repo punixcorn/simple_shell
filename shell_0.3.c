@@ -9,7 +9,7 @@
 #define MAX_NUM_TOKENS 64
 /**
  * tokenize_input - Tokenizes a given string
- * @input: String to tokenize
+ * @input: String to be tokenize
  *
  * Returns an array of tokens. The last element of the array is set to NULL.
  */
@@ -85,7 +85,7 @@ int main(int argc, char *argv[]) {
   char input[MAX_INPUT_SIZE];
 
   while (1) {
-    printf("Shell>");
+    printf("Shell >");
     fgets(input, MAX_INPUT_SIZE, stdin);
     input[strcspn(input, "\n")] = '\0'; /* remove trailing newline */
 
