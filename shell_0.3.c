@@ -14,7 +14,8 @@
  * Returns an array of tokens. The last element of the array is set to NULL.
  */
 char **tokenize_input(char *input) {
-  { /* ... function implementation ... */ }
+  { /* ... function implementation ... */
+  }
   char **tokens = malloc(MAX_NUM_TOKENS * sizeof(char *));
   char *token = strtok(input, " \t\n");
   int i = 0;
@@ -36,7 +37,8 @@ char **tokenize_input(char *input) {
  * Returns the full path to the command if found, or NULL if not found.
  */
 char *search_path(char *command) {
-  { /* ... function implementation ... */ }
+  { /* ... function implementation ... */
+  }
   char *path = getenv("PATH");
   char *dir = strtok(path, ":");
 
@@ -62,7 +64,8 @@ char *search_path(char *command) {
  * Returns the full path to the command.
  */
 char *build_path(char *path, char *command) {
-  { /* ... function implementation ... */ }
+  { /* ... function implementation ... */
+  }
   char *cmd_path = malloc(strlen(path) + strlen(command) + 2);
 
   sprintf(cmd_path, "%s/%s", path, command);
@@ -77,11 +80,12 @@ char *build_path(char *path, char *command) {
  * Returns 0 on success, non-zero on failure.
  */
 int main(int argc, char *argv[]) {
-  { /* ... function implementation ... */ }
+  { /* ... function implementation ... */
+  }
   char input[MAX_INPUT_SIZE];
 
   while (1) {
-    printf "Shell>";
+    printf("Shell>");
     fgets(input, MAX_INPUT_SIZE, stdin);
     input[strcspn(input, "\n")] = '\0'; /* remove trailing newline */
 
