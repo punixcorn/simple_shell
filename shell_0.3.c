@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
 #include <string.h>
 #include <sys/wait.h>
+#include <unistd.h>
 
 #define MAX_INPUT_SIZE 1024
 #define MAX_TOKEN_SIZE 64
@@ -13,24 +13,20 @@
  *
  * Returns an array of tokens. The last element of the array is set to NULL.
  */
-char **tokenize_input(char *input)
-{
-	{
-		/* ... function implementation ... */
-	}
-	char **tokens = malloc(MAX_NUM_TOKENS * sizeof(char *));
-	char *token = strtok(input, " \t\n");
-	int i = 0;
+char **tokenize_input(char *input) {
+  { /* ... function implementation ... */ }
+  char **tokens = malloc(MAX_NUM_TOKENS * sizeof(char *));
+  char *token = strtok(input, " \t\n");
+  int i = 0;
 
-	while (token != NULL)
-	{
-		tokens[i] = token;
-		i++;
-		token = strtok(NULL, " \t\n");
-	}
+  while (token != NULL) {
+    tokens[i] = token;
+    i++;
+    token = strtok(NULL, " \t\n");
+  }
 
-	tokens[i] = NULL;
-	return (tokens);
+  tokens[i] = NULL;
+  return (tokens);
 }
 
 /**
@@ -39,28 +35,23 @@ char **tokenize_input(char *input)
  *
  * Returns the full path to the command if found, or NULL if not found.
  */
-char *search_path(char *command)
-{
-	{
-		/* ... function implementation ... */
-	}
-	char *path = getenv("PATH");
-	char *dir = strtok(path, ":");
+char *search_path(char *command) {
+  { /* ... function implementation ... */ }
+  char *path = getenv("PATH");
+  char *dir = strtok(path, ":");
 
-	while (dir != NULL)
-	{
-		char *cmd_path = malloc(strlen(dir) + strlen(command) + 2);
+  while (dir != NULL) {
+    char *cmd_path = malloc(strlen(dir) + strlen(command) + 2);
 
-		sprintf(cmd_path, "%s/%s", dir, command);
-		if (access(cmd_path, X_OK) == 0)
-		{
-			return (cmd_path);
-		}
+    sprintf(cmd_path, "%s/%s", dir, command);
+    if (access(cmd_path, X_OK) == 0) {
+      return (cmd_path);
+    }
 
-		free(cmd_path);
-		dir = strtok(NULL, ":");
-	}
-	return (NULL);
+    free(cmd_path);
+    dir = strtok(NULL, ":");
+  }
+  return (NULL);
 }
 
 /**
@@ -70,15 +61,12 @@ char *search_path(char *command)
  *
  * Returns the full path to the command.
  */
-char *build_path(char *path, char *command)
-{
-	{
-		/* ... function implementation ... */
-	}
-	char *cmd_path = malloc(strlen(path) + strlen(command) + 2);
+char *build_path(char *path, char *command) {
+  { /* ... function implementation ... */ }
+  char *cmd_path = malloc(strlen(path) + strlen(command) + 2);
 
-	sprintf(cmd_path, "%s/%s", path, command);
-	return (cmd_path);
+  sprintf(cmd_path, "%s/%s", path, command);
+  return (cmd_path);
 }
 
 /**
@@ -88,48 +76,40 @@ char *build_path(char *path, char *command)
  *
  * Returns 0 on success, non-zero on failure.
  */
-int main(int argc, char *argv[])
-{
-	{
-		/* ... function implementation ... */
-	}
-	char input[MAX_INPUT_SIZE];
+int main(int argc, char *argv[]) {
+  { /* ... function implementation ... */ }
+  char input[MAX_INPUT_SIZE];
 
-	while (1)
-	{
-		printf "Shell>";
-		fgets(input, MAX_INPUT_SIZE, stdin);
-		input[strcspn(input, "\n")] = '\0';  /* remove trailing newline */
+  while (1) {
+    printf "Shell>";
+    fgets(input, MAX_INPUT_SIZE, stdin);
+    input[strcspn(input, "\n")] = '\0'; /* remove trailing newline */
 
-		if (strcmp(input, "exit") == 0)
-		{
-			break;
-		}
+    if (strcmp(input, "exit") == 0) {
+      break;
+    }
 
-		char **tokens = tokenize_input(input);
-		pid_t pid = fork();
+    char **tokens = tokenize_input(input);
+    pid_t pid = fork();
 
-		if (pid == 0)
-		{  /* child process */
-			char *path = search_path(tokens[0]);
+    if (pid == 0) { /* child process */
+      char *path = search_path(tokens[0]);
 
-			if (path == NULL)
-			{
-				printf("%s: command not found\n", tokens[0]);
-				exit(1);
-			}
-			char *cmd_path = build_path(path, tokens[0]);
+      if (path == NULL) {
+        printf("%s: command not found\n", tokens[0]);
+        exit(1);
+      }
+      char *cmd_path = build_path(path, tokens[0]);
 
-			execv(cmd_path, tokens);
-			perror("execv");
-			exit(1);
-		} else
-		{ /* parent process */
-			waitpid(pid, NULL, 0);
-		}
+      execv(cmd_path, tokens);
+      perror("execv");
+      exit(1);
+    } else { /* The parent process */
+      waitpid(pid, NULL, 0);
+    }
 
-		free(tokens);
-	}
+    free(tokens);
+  }
 
-	return (0);
+  return (0);
 }
