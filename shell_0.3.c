@@ -100,7 +100,7 @@ int main(int argc, char *argv[]) {
       char *path = search_path(tokens[0]);
 
       if (path == NULL) {
-        printf("%s: command not found\n", tokens[0]);
+        fprintf(stderr, "%s: command not found\n", tokens[0]);
         exit(1);
       }
       char *cmd_path = build_path(path, tokens[0]);
